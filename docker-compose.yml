@@ -1,0 +1,24 @@
+services:
+  emacs:
+    image: grzs/emacs
+    entrypoint:
+      - /usr/bin/dumb-init
+      - /usr/local/bin/emacs
+    command:
+      - --fg-daemon
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: $XAUTHORITY
+        target: /opt/home/dev/.Xauthority
+    environment:
+      DISPLAY: ":0"
+    healthcheck:
+      test: "test -S /tmp/emacs0/server"
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+      start_interval: 5s
