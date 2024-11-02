@@ -14,5 +14,8 @@ target "emacs" {
     EMACS_VERSION = "29.4"
   }
 
-  tags = [ "emacs:ubuntu-${UBUNTU_VERSION}" ]
+  tags = [
+    "emacs:ubuntu-${UBUNTU_VERSION}",
+    "grzs/emacs:ubuntu-${UBUNTU_VERSION}",
+  ]
 }
